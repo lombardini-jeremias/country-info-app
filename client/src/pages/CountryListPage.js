@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "./CountryListPage.css";
 
 const CountryListPage = () => {
   const [countries, setCountries] = useState([]);
@@ -28,15 +29,20 @@ const CountryListPage = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Available Countries</h1>
+    <div className="country-list-container">
+      <h1 className="country-list-title">Available Countries</h1>
       {loading ? (
-        <p>Loading...</p>
+        <div className="loading-indicator">Loading...</div>
       ) : (
-        <ul>
+        <ul className="country-list">
           {countries.map((country) => (
-            <li key={country.countryCode}>
-              <Link to={`/country/${country.countryCode}`}>{country.name}</Link>
+            <li key={country.countryCode} className="country-list-item">
+              <Link
+                to={`/country/${country.countryCode}`}
+                className="country-link"
+              >
+                {country.name}
+              </Link>
             </li>
           ))}
         </ul>
