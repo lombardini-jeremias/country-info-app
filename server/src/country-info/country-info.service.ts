@@ -43,12 +43,21 @@ export class CountryInfoService {
         (country) => country.country === countryName,
       );
 
+      const flagResponse = await axios.get(
+        `${this.countriesNowBaseUrl}/countries/flag/images`,
+      );
+
+      const flagData = flagResponse.data.data.find(
+        (countryflag) => countryflag.name === countryName,
+      );
+
       return {
         name: borderCountriesResponse.data.commonName,
         countryCode: borderCountriesResponse.data.countryCode,
         region: borderCountriesResponse.data.region,
         borders: borderCountries,
         populationData: populationData ? populationData.populationCounts : [],
+        flagData: flagData ? flagData.flag : [],
       };
     } catch (error) {
       console.error('Error fetching country information:', error);
