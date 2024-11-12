@@ -1,0 +1,65 @@
+/* CountryInfoPage.css */
+
+.country-info-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.flag {
+  width: 100px;
+  height: auto;
+  margin-right: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.country-name {
+  font-size: 2em;
+  margin: 0;
+}
+
+.borders-section,
+.population-section {
+  margin-top: 20px;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+/* Border Countries Section */
+.borders-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.borders-section li {
+  margin-bottom: 5px;
+}
+
+.borders-section a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.borders-section a:hover {
+  text-decoration: underline;
+}
+
+/* Population Chart Section */
+.population-section {
+  margin-top: 30px;
+}

@@ -7,13 +7,11 @@ export class CountryInfoController {
 
   @Get('available')
   async getAvailableCountries() {
-    console.log('CONTROLLER LOG');
     return this.countryService.getAvailableCountries();
   }
 
   @Get(':countryCode')
   async getCountryInfo(@Param('countryCode') countryCode: string) {
-    console.log('CONTROLLER countryCode');
     return this.countryService.getCountryInfo(countryCode);
   }
 }
