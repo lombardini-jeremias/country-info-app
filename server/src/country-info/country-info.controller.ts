@@ -11,9 +11,9 @@ export class CountryInfoController {
     return this.countryService.getAvailableCountries();
   }
 
-  @Get(':code')
-  async getCountryInfo(@Param('code') code: string) {
-    console.log('CONTROLLER LOG');
-    return this.countryService.getCountryInfo(code);
+  @Get(':countryCode')
+  async getCountryInfo(@Param('countryCode') countryCode: string) {
+    console.log('CONTROLLER countryCode');
+    return this.countryService.getCountryInfo(countryCode);
   }
 }

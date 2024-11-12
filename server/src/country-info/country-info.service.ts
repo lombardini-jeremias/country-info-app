@@ -22,33 +22,36 @@ export class CountryInfoService {
 
   async getCountryInfo(countryCode: string) {
     try {
-      // Fetch BOrder
-      const borderCountries = await axios.get(
+      const borderCountriesResponse = await axios.get(
         `${this.nagerBaseUrl}/CountryInfo/${countryCode}`,
       );
 
-      // Fetch population
-      const populationResponse = await axios.post(
-        `${this.countriesNowBaseUrl}/countries/population`,
-        {
-          country: countryCode,
-        },
+      const borderCountries = borderCountriesResponse.data.borders.map(
+        (border) => ({
+          name: border.commonName,
+          code: border.countryCode,
+        }),
       );
 
-      // Fetch FLAG
-      const flagResponse = await axios.post(
-        `${this.countriesNowBaseUrl}/countries/flag/images`,
-        {
-          country: countryCode,
-        },
+      const countryName = borderCountriesResponse.data.commonName;
+
+      const populationResponse = await axios.get(
+        `${this.countriesNowBaseUrl}/countries/population`,
+      );
+
+      const populationData = populationResponse.data.data.find(
+        (country) => country.country === countryName,
       );
 
       return {
-        borders: borderCountries.data.borders || [],
-        populationData: populationResponse.data.data.populationCounts || [],
-        flagUrl: flagResponse.data.data.flag || '',
+        name: borderCountriesResponse.data.commonName,
+        countryCode: borderCountriesResponse.data.countryCode,
+        region: borderCountriesResponse.data.region,
+        borders: borderCountries,
+        populationData: populationData ? populationData.populationCounts : [],
       };
     } catch (error) {
+      console.error('Error fetching country information:', error);
       throw new HttpException(
         error.response?.data || 'Error fetching country information',
         error.response?.status || HttpStatus.INTERNAL_SERVER_ERROR,
