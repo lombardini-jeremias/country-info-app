@@ -1,32 +1,32 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import "./CountryListPage.css";
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
+import './CountryListPage.css'
 
 const CountryListPage = () => {
-  const [countries, setCountries] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [countries, setCountries] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const fetchCountries = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_BASE_URL}/country/available`
-      );
+        `${process.env.REACT_APP_API_BASE_URL}/country/available`,
+      )
       if (response.data) {
-        setCountries(response.data);
-        setLoading(false);
+        setCountries(response.data)
+        setLoading(false)
       } else {
-        console.error("No data received from API.");
+        console.error('No data received from API.')
       }
     } catch (error) {
-      console.error("Error fetching country list:", error);
-      setLoading(false);
+      console.error('Error fetching country list:', error)
+      setLoading(false)
     }
-  };
+  }
 
   useEffect(() => {
-    fetchCountries();
-  }, []);
+    fetchCountries()
+  }, [])
 
   return (
     <div className="country-list-container">
@@ -48,7 +48,7 @@ const CountryListPage = () => {
         </ul>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default CountryListPage;
+export default CountryListPage

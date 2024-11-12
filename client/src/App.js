@@ -1,7 +1,7 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import CountryListPage from "./pages/CountryListPage";
-import CountryInfoPage from "./pages/CountryInfoPage";
+import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import CountryListPage from './pages/CountryListPage'
+import CountryInfoPage from './pages/CountryInfoPage'
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <Route path="/country/:countryCode" element={<CountryInfoPage />} />
       </Routes>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

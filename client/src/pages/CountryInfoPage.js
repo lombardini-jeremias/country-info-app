@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import PopulationChart from "../components/PopulationChart";
-import BorderCountries from "../components/BorderCountries";
-import "./CountryInfoPage.css";
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
+import PopulationChart from '../components/PopulationChart'
+import BorderCountries from '../components/BorderCountries'
+import './CountryInfoPage.css'
 
 const CountryInfoPage = () => {
-  const { countryCode } = useParams();
-  const [countryInfo, setCountryInfo] = useState(null);
+  const { countryCode } = useParams()
+  const [countryInfo, setCountryInfo] = useState(null)
 
   useEffect(() => {
     const fetchCountryInfo = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_BASE_URL}/country/${countryCode}`
-        );
-        setCountryInfo(response.data);
+          `${process.env.REACT_APP_API_BASE_URL}/country/${countryCode}`,
+        )
+        setCountryInfo(response.data)
       } catch (error) {
-        console.error("Error fetching country info:", error);
+        console.error('Error fetching country info:', error)
       }
-    };
-    fetchCountryInfo();
-  }, [countryCode]);
+    }
+    fetchCountryInfo()
+  }, [countryCode])
 
-  if (!countryInfo) return <p>Loading...</p>;
+  if (!countryInfo) return <p>Loading...</p>
 
   return (
     <div className="country-info-container">
@@ -44,7 +44,7 @@ const CountryInfoPage = () => {
         <PopulationChart populationData={countryInfo.populationData} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CountryInfoPage;
+export default CountryInfoPage

@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react'
+import PropTypes from 'prop-types'
 import {
   LineChart,
   Line,
@@ -8,7 +9,7 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from "recharts";
+} from 'recharts'
 
 const PopulationChart = ({ populationData }) => {
   return (
@@ -18,17 +19,17 @@ const PopulationChart = ({ populationData }) => {
         <XAxis
           dataKey="year"
           label={{
-            value: "Year",
-            position: "insideBottomRight",
+            value: 'Year',
+            position: 'insideBottomRight',
             offset: -5,
           }}
         />
         <YAxis
           dataKey="value"
           label={{
-            value: "population",
+            value: 'population',
             angle: -90,
-            position: "insideLeft",
+            position: 'insideLeft',
             offset: 0,
           }}
         />
@@ -42,7 +43,16 @@ const PopulationChart = ({ populationData }) => {
         />
       </LineChart>
     </ResponsiveContainer>
-  );
-};
+  )
+}
 
-export default PopulationChart;
+export default PopulationChart
+
+PopulationChart.propTypes = {
+  populationData: PropTypes.arrayOf(
+    PropTypes.shape({
+      year: PropTypes.number.isRequired,
+      value: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
+}

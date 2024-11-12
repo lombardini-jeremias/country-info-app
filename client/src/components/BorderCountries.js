@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 const BorderCountries = ({ borders }) => (
   <ul>
@@ -9,6 +10,10 @@ const BorderCountries = ({ borders }) => (
       </li>
     ))}
   </ul>
-);
+)
 
-export default BorderCountries;
+export default BorderCountries
+
+BorderCountries.propTypes = {
+  borders: PropTypes.arrayOf(PropTypes.string).isRequired,
+}
