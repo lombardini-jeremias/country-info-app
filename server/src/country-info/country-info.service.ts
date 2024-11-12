@@ -1,10 +1,14 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
 
 @Injectable()
 export class CountryInfoService {
-  private nagerBaseUrl = process.env.NAGER_BASE_URL;
-  private countriesNowBaseUrl = process.env.COUNTRY_NOW_URL;
+  constructor(private configService: ConfigService) { }
+
+  private nagerBaseUrl = this.configService.get<string>('NAGER_BASE_URL');
+  private countriesNowBaseUrl =
+    this.configService.get<string>('COUNTRY_NOW_URL');
 
   async getAvailableCountries() {
     try {
